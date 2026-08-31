@@ -73,8 +73,9 @@ Ordenamiento nunca es solo por distancia; se muestra al cliente el porqué de ca
 2. **Selección de rol** — cliente o profesional.
 3. **Onboarding de perfil** — formulario según rol; el profesional añade profesión, especialidades, experiencia, tarifas, cobertura.
 4. **Permiso de ubicación** — solicitud explícita con explicación de uso.
-5. **Inicio cliente** — mapa con profesionales cercanos, buscador y filtros.
-6. **Resultados con matching** — lista ordenada por puntaje, con motivos visibles.
+5. **Inicio cliente** — mapa centrado en la ubicación del cliente **sin marcadores de profesionales**. En su lugar, un indicador agregado tipo "12 profesionales disponibles cerca de ti" y, opcionalmente, una zona difusa de cobertura. Buscador de especialidad y filtros como acción principal.
+6. **Resultados con matching** — solo tras buscar una especialidad (ej. "Electricista") se listan los profesionales que pueden atender, ordenados por puntaje, con información suficiente para elegir (foto, calificación, experiencia, tarifa, tiempo estimado de llegada, sector aproximado) y los motivos de la recomendación. Nunca coordenadas exactas.
+
 7. **Perfil del profesional** — experiencia, tarifas, reseñas, disponibilidad, botón de solicitar.
 8. **Crear solicitud** — especialidad, descripción, ubicación, ahora o programado.
 9. **Buscando profesional** — estado en vivo mientras se ofrece a candidatos.
