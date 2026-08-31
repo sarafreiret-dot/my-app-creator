@@ -102,7 +102,7 @@ Ordenamiento nunca es solo por distancia; se muestra al cliente el porqué de ca
 1. Diseño system, autenticación (email + Google), perfiles, roles, onboarding.
 2. Ubicación, disponibilidad tri-estado, panel del profesional.
 3. Mapa con Google Maps, búsqueda y motor de matching.
-4. Solicitudes, ofertas a candidatos, aceptación en tiempo real.
+4. Solicitudes, ofertas a candidatos, aceptación atómica en tiempo real.
 5. Seguimiento con ETA, chat interno, transiciones de estado.
 6. Cancelaciones con motivos, calificaciones y recálculo de promedios.
 
