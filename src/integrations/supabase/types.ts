@@ -14,16 +14,211 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      professional_profiles: {
+        Row: {
+          average_rating: number
+          base_rate: number
+          completed_services: number
+          coverage_radius: number
+          created_at: string
+          description: string | null
+          hourly_rate: number
+          profession: string
+          updated_at: string
+          user_id: string
+          verification_status: Database["public"]["Enums"]["verification_status"]
+          years_experience: number
+        }
+        Insert: {
+          average_rating?: number
+          base_rate?: number
+          completed_services?: number
+          coverage_radius?: number
+          created_at?: string
+          description?: string | null
+          hourly_rate?: number
+          profession?: string
+          updated_at?: string
+          user_id: string
+          verification_status?: Database["public"]["Enums"]["verification_status"]
+          years_experience?: number
+        }
+        Update: {
+          average_rating?: number
+          base_rate?: number
+          completed_services?: number
+          coverage_radius?: number
+          created_at?: string
+          description?: string | null
+          hourly_rate?: number
+          profession?: string
+          updated_at?: string
+          user_id?: string
+          verification_status?: Database["public"]["Enums"]["verification_status"]
+          years_experience?: number
+        }
+        Relationships: []
+      }
+      professional_specialties: {
+        Row: {
+          created_at: string
+          id: string
+          professional_id: string
+          specialty_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          professional_id: string
+          specialty_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          professional_id?: string
+          specialty_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "professional_specialties_specialty_id_fkey"
+            columns: ["specialty_id"]
+            isOneToOne: false
+            referencedRelation: "specialties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profile_private: {
+        Row: {
+          created_at: string
+          latitude: number | null
+          longitude: number | null
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          latitude?: number | null
+          longitude?: number | null
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          latitude?: number | null
+          longitude?: number | null
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          active_role: Database["public"]["Enums"]["app_role"]
+          approximate_city: string | null
+          approximate_sector: string | null
+          avatar_url: string | null
+          created_at: string
+          full_name: string
+          id: string
+          onboarding_completed: boolean
+          updated_at: string
+        }
+        Insert: {
+          active_role?: Database["public"]["Enums"]["app_role"]
+          approximate_city?: string | null
+          approximate_sector?: string | null
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string
+          id: string
+          onboarding_completed?: boolean
+          updated_at?: string
+        }
+        Update: {
+          active_role?: Database["public"]["Enums"]["app_role"]
+          approximate_city?: string | null
+          approximate_sector?: string | null
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string
+          id?: string
+          onboarding_completed?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      specialties: {
+        Row: {
+          created_at: string
+          icon: string | null
+          id: string
+          is_active: boolean
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string
+          icon?: string | null
+          id?: string
+          is_active?: boolean
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string
+          icon?: string | null
+          id?: string
+          is_active?: boolean
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      assign_initial_role: {
+        Args: { _role: Database["public"]["Enums"]["app_role"] }
+        Returns: Database["public"]["Enums"]["app_role"]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "client" | "professional" | "admin"
+      verification_status: "pending" | "verified" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +345,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["client", "professional", "admin"],
+      verification_status: ["pending", "verified", "rejected"],
+    },
   },
 } as const
