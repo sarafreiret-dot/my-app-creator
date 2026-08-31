@@ -89,10 +89,13 @@ Ordenamiento nunca es solo por distancia; se muestra al cliente el porqué de ca
 
 - RLS en todas las tablas; ninguna es legible públicamente.
 - `profile_private` (teléfono) y `professional_locations` (ubicación exacta): solo el propio dueño accede directamente. La contraparte accede a datos mínimos únicamente a través de funciones del servidor que verifican que existe un servicio activo entre ambos.
+- **La ubicación exacta de un profesional nunca sale del servidor antes de la aceptación.** Las pantallas previas usan solo datos derivados: conteos agregados, sector aproximado y tiempo estimado de llegada calculado en el servidor. El mapa de inicio no recibe coordenadas de profesionales.
 - El chat interno es el único canal de contacto; no se expone el teléfono en la interfaz.
 - `has_role` como función security definer para evitar recursión en políticas.
+- La adjudicación de solicitudes pasa siempre por la función transaccional; los clientes no pueden asignarse ni reasignarse un profesional mediante escrituras directas.
 - GRANT explícito por tabla según las políticas definidas.
 - Validación de entradas con Zod en cliente y servidor.
+
 
 ## Fases de implementación
 
