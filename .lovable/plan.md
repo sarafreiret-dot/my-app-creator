@@ -41,10 +41,18 @@ Sistema de diseño en `src/styles.css` (tokens semánticos oklch, mobile-first):
 - `reviews` — calificación 1-5 y comentario, vinculada a la solicitud finalizada, con autor y destinatario (permite calificación bidireccional a futuro).
 - Trigger que recalcula calificación promedio y contador de servicios en `professional_profiles`.
 
+**Aceptación atómica (una sola adjudicación)**
+- `service_requests.professional_id` empieza nulo y solo puede fijarse una vez, con restricción que impide reasignarlo.
+- La aceptación ocurre en una función de base de datos transaccional: toma un bloqueo de fila sobre la solicitud, verifica que el estado siga siendo `searching`/`matched` y que el profesional sea candidato válido, y solo entonces asigna al profesional y pasa el estado a `accepted`. Todo en una sola transacción.
+- El primer profesional que complete la operación obtiene el servicio; cualquier otro recibe de inmediato un resultado explícito de "solicitud ya no disponible", y su tarjeta de solicitud entrante desaparece en tiempo real.
+- Los candidatos restantes se marcan como `lost` en `request_candidates` dentro de la misma transacción, dejando trazabilidad.
+- La UI del profesional refleja el estado real: el botón se deshabilita y muestra el motivo, sin errores crudos.
+
 **Preparado para pagos (sin implementar)**
 - `service_requests` incluye desde ya campos de monto estimado y monto acordado.
 - Las tablas `cancellations` y `service_events` registran el contexto necesario para penalizaciones.
 - No se crean tablas de pago ni integración de pasarela en esta fase; se añadirán como tablas satélite (`payments`, `commissions`, `refunds`) sin alterar las existentes.
+
 
 ## Motor de matching (modular)
 
