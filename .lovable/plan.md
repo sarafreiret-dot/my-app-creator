@@ -41,10 +41,18 @@ Sistema de diseño en `src/styles.css` (tokens semánticos oklch, mobile-first):
 - `reviews` — calificación 1-5 y comentario, vinculada a la solicitud finalizada, con autor y destinatario (permite calificación bidireccional a futuro).
 - Trigger que recalcula calificación promedio y contador de servicios en `professional_profiles`.
 
+**Aceptación atómica (una sola adjudicación)**
+- `service_requests.professional_id` empieza nulo y solo puede fijarse una vez, con restricción que impide reasignarlo.
+- La aceptación ocurre en una función de base de datos transaccional: toma un bloqueo de fila sobre la solicitud, verifica que el estado siga siendo `searching`/`matched` y que el profesional sea candidato válido, y solo entonces asigna al profesional y pasa el estado a `accepted`. Todo en una sola transacción.
+- El primer profesional que complete la operación obtiene el servicio; cualquier otro recibe de inmediato un resultado explícito de "solicitud ya no disponible", y su tarjeta de solicitud entrante desaparece en tiempo real.
+- Los candidatos restantes se marcan como `lost` en `request_candidates` dentro de la misma transacción, dejando trazabilidad.
+- La UI del profesional refleja el estado real: el botón se deshabilita y muestra el motivo, sin errores crudos.
+
 **Preparado para pagos (sin implementar)**
 - `service_requests` incluye desde ya campos de monto estimado y monto acordado.
 - Las tablas `cancellations` y `service_events` registran el contexto necesario para penalizaciones.
 - No se crean tablas de pago ni integración de pasarela en esta fase; se añadirán como tablas satélite (`payments`, `commissions`, `refunds`) sin alterar las existentes.
+
 
 ## Motor de matching (modular)
 
@@ -65,8 +73,9 @@ Ordenamiento nunca es solo por distancia; se muestra al cliente el porqué de ca
 2. **Selección de rol** — cliente o profesional.
 3. **Onboarding de perfil** — formulario según rol; el profesional añade profesión, especialidades, experiencia, tarifas, cobertura.
 4. **Permiso de ubicación** — solicitud explícita con explicación de uso.
-5. **Inicio cliente** — mapa con profesionales cercanos, buscador y filtros.
-6. **Resultados con matching** — lista ordenada por puntaje, con motivos visibles.
+5. **Inicio cliente** — mapa centrado en la ubicación del cliente **sin marcadores de profesionales**. En su lugar, un indicador agregado tipo "12 profesionales disponibles cerca de ti" y, opcionalmente, una zona difusa de cobertura. Buscador de especialidad y filtros como acción principal.
+6. **Resultados con matching** — solo tras buscar una especialidad (ej. "Electricista") se listan los profesionales que pueden atender, ordenados por puntaje, con información suficiente para elegir (foto, calificación, experiencia, tarifa, tiempo estimado de llegada, sector aproximado) y los motivos de la recomendación. Nunca coordenadas exactas.
+
 7. **Perfil del profesional** — experiencia, tarifas, reseñas, disponibilidad, botón de solicitar.
 8. **Crear solicitud** — especialidad, descripción, ubicación, ahora o programado.
 9. **Buscando profesional** — estado en vivo mientras se ofrece a candidatos.
@@ -80,17 +89,20 @@ Ordenamiento nunca es solo por distancia; se muestra al cliente el porqué de ca
 
 - RLS en todas las tablas; ninguna es legible públicamente.
 - `profile_private` (teléfono) y `professional_locations` (ubicación exacta): solo el propio dueño accede directamente. La contraparte accede a datos mínimos únicamente a través de funciones del servidor que verifican que existe un servicio activo entre ambos.
+- **La ubicación exacta de un profesional nunca sale del servidor antes de la aceptación.** Las pantallas previas usan solo datos derivados: conteos agregados, sector aproximado y tiempo estimado de llegada calculado en el servidor. El mapa de inicio no recibe coordenadas de profesionales.
 - El chat interno es el único canal de contacto; no se expone el teléfono en la interfaz.
 - `has_role` como función security definer para evitar recursión en políticas.
+- La adjudicación de solicitudes pasa siempre por la función transaccional; los clientes no pueden asignarse ni reasignarse un profesional mediante escrituras directas.
 - GRANT explícito por tabla según las políticas definidas.
 - Validación de entradas con Zod en cliente y servidor.
+
 
 ## Fases de implementación
 
 1. Diseño system, autenticación (email + Google), perfiles, roles, onboarding.
 2. Ubicación, disponibilidad tri-estado, panel del profesional.
 3. Mapa con Google Maps, búsqueda y motor de matching.
-4. Solicitudes, ofertas a candidatos, aceptación en tiempo real.
+4. Solicitudes, ofertas a candidatos, aceptación atómica en tiempo real.
 5. Seguimiento con ETA, chat interno, transiciones de estado.
 6. Cancelaciones con motivos, calificaciones y recálculo de promedios.
 
