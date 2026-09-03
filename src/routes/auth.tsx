@@ -1,7 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { ArrowLeft, Loader2, Mail, ShieldCheck } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent, type InputHTMLAttributes } from "react";
 import { toast } from "sonner";
 
 import { SuccessState } from "@/components/feedback/states";
@@ -85,7 +85,7 @@ function AuthPage() {
     }
   }
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const raw = Object.fromEntries(formData.entries()) as Record<string, string>;
@@ -319,7 +319,7 @@ function FieldInput({
   label,
   error,
   ...props
-}: React.InputHTMLAttributes<HTMLInputElement> & {
+}: InputHTMLAttributes<HTMLInputElement> & {
   name: string;
   label: string;
   error?: string;
