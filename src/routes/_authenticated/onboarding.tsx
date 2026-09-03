@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { ArrowLeft, BadgeCheck, Briefcase, Loader2, UserRound } from "lucide-react";
-import { useState } from "react";
+import { useState, type InputHTMLAttributes } from "react";
 import { toast } from "sonner";
 
 import { AvatarPicker } from "@/components/profile/AvatarPicker";
@@ -524,7 +524,7 @@ function Field({
   error,
   hint,
   ...inputProps
-}: React.InputHTMLAttributes<HTMLInputElement> & {
+}: InputHTMLAttributes<HTMLInputElement> & {
   name: string;
   label: string;
   error?: string;
