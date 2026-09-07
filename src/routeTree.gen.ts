@@ -16,6 +16,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
 import { Route as AuthenticatedClientIndexRouteImport } from './routes/_authenticated/client/index'
 import { Route as AuthenticatedClientPerfilRouteImport } from './routes/_authenticated/client/perfil'
+import { Route as AuthenticatedProfessionalIndexRouteImport } from './routes/_authenticated/professional/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -53,6 +54,12 @@ const AuthenticatedClientPerfilRoute =
     path: '/client/perfil',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedProfessionalIndexRoute =
+  AuthenticatedProfessionalIndexRouteImport.update({
+    id: '/professional/',
+    path: '/professional/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +68,7 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/client/perfil': typeof AuthenticatedClientPerfilRoute
   '/client/': typeof AuthenticatedClientIndexRoute
+  '/professional/': typeof AuthenticatedProfessionalIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -69,6 +77,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/client/perfil': typeof AuthenticatedClientPerfilRoute
   '/client': typeof AuthenticatedClientIndexRoute
+  '/professional': typeof AuthenticatedProfessionalIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -79,6 +88,7 @@ export interface FileRoutesById {
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
   '/_authenticated/client/perfil': typeof AuthenticatedClientPerfilRoute
   '/_authenticated/client/': typeof AuthenticatedClientIndexRoute
+  '/_authenticated/professional/': typeof AuthenticatedProfessionalIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/client/perfil'
     | '/client/'
+    | '/professional/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/client/perfil'
     | '/client'
+    | '/professional'
   id:
     | '__root__'
     | '/'
@@ -106,6 +118,7 @@ export interface FileRouteTypes {
     | '/_authenticated/onboarding'
     | '/_authenticated/client/perfil'
     | '/_authenticated/client/'
+    | '/_authenticated/professional/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -166,6 +179,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedClientPerfilRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/professional/': {
+      id: '/_authenticated/professional/'
+      path: '/professional'
+      fullPath: '/professional/'
+      preLoaderRoute: typeof AuthenticatedProfessionalIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -173,12 +193,14 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
   AuthenticatedClientPerfilRoute: typeof AuthenticatedClientPerfilRoute
   AuthenticatedClientIndexRoute: typeof AuthenticatedClientIndexRoute
+  AuthenticatedProfessionalIndexRoute: typeof AuthenticatedProfessionalIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
   AuthenticatedClientPerfilRoute: AuthenticatedClientPerfilRoute,
   AuthenticatedClientIndexRoute: AuthenticatedClientIndexRoute,
+  AuthenticatedProfessionalIndexRoute: AuthenticatedProfessionalIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
