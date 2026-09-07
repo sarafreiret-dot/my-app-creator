@@ -17,6 +17,7 @@ import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authentic
 import { Route as AuthenticatedClientIndexRouteImport } from './routes/_authenticated/client/index'
 import { Route as AuthenticatedClientPerfilRouteImport } from './routes/_authenticated/client/perfil'
 import { Route as AuthenticatedProfessionalIndexRouteImport } from './routes/_authenticated/professional/index'
+import { Route as AuthenticatedProfessionalPerfilRouteImport } from './routes/_authenticated/professional/perfil'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -60,6 +61,12 @@ const AuthenticatedProfessionalIndexRoute =
     path: '/professional/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedProfessionalPerfilRoute =
+  AuthenticatedProfessionalPerfilRouteImport.update({
+    id: '/professional/perfil',
+    path: '/professional/perfil',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/client/perfil': typeof AuthenticatedClientPerfilRoute
+  '/professional/perfil': typeof AuthenticatedProfessionalPerfilRoute
   '/client/': typeof AuthenticatedClientIndexRoute
   '/professional/': typeof AuthenticatedProfessionalIndexRoute
 }
@@ -76,6 +84,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/client/perfil': typeof AuthenticatedClientPerfilRoute
+  '/professional/perfil': typeof AuthenticatedProfessionalPerfilRoute
   '/client': typeof AuthenticatedClientIndexRoute
   '/professional': typeof AuthenticatedProfessionalIndexRoute
 }
@@ -87,6 +96,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
   '/_authenticated/client/perfil': typeof AuthenticatedClientPerfilRoute
+  '/_authenticated/professional/perfil': typeof AuthenticatedProfessionalPerfilRoute
   '/_authenticated/client/': typeof AuthenticatedClientIndexRoute
   '/_authenticated/professional/': typeof AuthenticatedProfessionalIndexRoute
 }
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/onboarding'
     | '/client/perfil'
+    | '/professional/perfil'
     | '/client/'
     | '/professional/'
   fileRoutesByTo: FileRoutesByTo
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/onboarding'
     | '/client/perfil'
+    | '/professional/perfil'
     | '/client'
     | '/professional'
   id:
@@ -117,6 +129,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/_authenticated/onboarding'
     | '/_authenticated/client/perfil'
+    | '/_authenticated/professional/perfil'
     | '/_authenticated/client/'
     | '/_authenticated/professional/'
   fileRoutesById: FileRoutesById
@@ -186,12 +199,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfessionalIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/professional/perfil': {
+      id: '/_authenticated/professional/perfil'
+      path: '/professional/perfil'
+      fullPath: '/professional/perfil'
+      preLoaderRoute: typeof AuthenticatedProfessionalPerfilRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
   AuthenticatedClientPerfilRoute: typeof AuthenticatedClientPerfilRoute
+  AuthenticatedProfessionalPerfilRoute: typeof AuthenticatedProfessionalPerfilRoute
   AuthenticatedClientIndexRoute: typeof AuthenticatedClientIndexRoute
   AuthenticatedProfessionalIndexRoute: typeof AuthenticatedProfessionalIndexRoute
 }
@@ -199,6 +220,7 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
   AuthenticatedClientPerfilRoute: AuthenticatedClientPerfilRoute,
+  AuthenticatedProfessionalPerfilRoute: AuthenticatedProfessionalPerfilRoute,
   AuthenticatedClientIndexRoute: AuthenticatedClientIndexRoute,
   AuthenticatedProfessionalIndexRoute: AuthenticatedProfessionalIndexRoute,
 }
