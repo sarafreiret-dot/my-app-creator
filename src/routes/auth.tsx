@@ -198,7 +198,7 @@ function AuthPage() {
                   type="email"
                   autoComplete="email"
                   placeholder="tu@correo.com"
-                  error={errors.email}
+                  error={errors['email']}
                 />
                 <Button type="submit" variant="action" size="lg" className="w-full" disabled={loading}>
                   {loading ? <Loader2 className="animate-spin" aria-hidden /> : <Mail aria-hidden />}
@@ -220,7 +220,7 @@ function AuthPage() {
                       type="email"
                       autoComplete="email"
                       placeholder="tu@correo.com"
-                      error={errors.email}
+                      error={errors['email']}
                     />
                     <FieldInput
                       name="password"
@@ -228,7 +228,7 @@ function AuthPage() {
                       type="password"
                       autoComplete="current-password"
                       placeholder="••••••••"
-                      error={errors.password}
+                      error={errors['password']}
                     />
                     <button
                       type="button"
@@ -252,7 +252,7 @@ function AuthPage() {
                       type="email"
                       autoComplete="email"
                       placeholder="tu@correo.com"
-                      error={errors.email}
+                      error={errors['email']}
                     />
                     <FieldInput
                       name="password"
@@ -260,7 +260,7 @@ function AuthPage() {
                       type="password"
                       autoComplete="new-password"
                       placeholder="Mínimo 8 caracteres"
-                      error={errors.password}
+                      error={errors['password']}
                     />
                     <FieldInput
                       name="confirm_password"
@@ -268,7 +268,7 @@ function AuthPage() {
                       type="password"
                       autoComplete="new-password"
                       placeholder="••••••••"
-                      error={errors.confirm_password}
+                      error={errors['confirm_password']}
                     />
                     <Button type="submit" variant="action" size="lg" className="w-full" disabled={loading}>
                       {loading ? <Loader2 className="animate-spin" aria-hidden /> : null}
