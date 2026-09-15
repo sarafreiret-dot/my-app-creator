@@ -262,7 +262,7 @@ function OnboardingPage() {
                     fallbackText={account.email ?? "U"}
                     required={role === "professional"}
                   />
-                  <FieldError message={errors.avatar} />
+                  <FieldError message={errors['avatar']} />
                 </div>
 
                 <Field
@@ -270,7 +270,7 @@ function OnboardingPage() {
                   label="Nombre completo"
                   placeholder="Ej. María Pérez"
                   defaultValue={account.profile?.full_name ?? ""}
-                  error={errors.full_name}
+                  error={errors['full_name']}
                   autoComplete="name"
                 />
                 <Field
@@ -278,7 +278,7 @@ function OnboardingPage() {
                   label="Teléfono"
                   placeholder="Ej. 0991234567"
                   defaultValue={account.profilePrivate?.phone ?? ""}
-                  error={errors.phone}
+                  error={errors['phone']}
                   autoComplete="tel"
                   hint="Solo se comparte cuando exista un servicio activo."
                 />
@@ -288,14 +288,14 @@ function OnboardingPage() {
                     label="Ciudad"
                     placeholder="Ej. Quito"
                     defaultValue={account.profile?.approximate_city ?? ""}
-                    error={errors.approximate_city}
+                    error={errors['approximate_city']}
                   />
                   <Field
                     name="approximate_sector"
                     label="Sector"
                     placeholder="Ej. La Carolina"
                     defaultValue={account.profile?.approximate_sector ?? ""}
-                    error={errors.approximate_sector}
+                    error={errors['approximate_sector']}
                   />
                 </div>
 
@@ -312,7 +312,7 @@ function OnboardingPage() {
                       label="Profesión"
                       placeholder="Ej. Electricista residencial"
                       defaultValue={account.professionalProfile?.profession ?? ""}
-                      error={errors.profession}
+                      error={errors['profession']}
                     />
 
                     <div className="space-y-2">
@@ -354,7 +354,7 @@ function OnboardingPage() {
                           })}
                         </div>
                       )}
-                      <FieldError message={errors.specialty_ids} />
+                      <FieldError message={errors['specialty_ids']} />
                     </div>
 
                     <div className="space-y-2">
@@ -366,7 +366,7 @@ function OnboardingPage() {
                         placeholder="Cuenta tu experiencia, el tipo de trabajos que realizas y por qué deberían elegirte."
                         defaultValue={account.professionalProfile?.description ?? ""}
                       />
-                      <FieldError message={errors.description} />
+                      <FieldError message={errors['description']} />
                     </div>
 
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -377,7 +377,7 @@ function OnboardingPage() {
                         min={0}
                         placeholder="5"
                         defaultValue={String(account.professionalProfile?.years_experience ?? "")}
-                        error={errors.years_experience}
+                        error={errors['years_experience']}
                       />
                       <Field
                         name="coverage_radius"
@@ -386,7 +386,7 @@ function OnboardingPage() {
                         min={1}
                         placeholder="10"
                         defaultValue={String(account.professionalProfile?.coverage_radius ?? "")}
-                        error={errors.coverage_radius}
+                        error={errors['coverage_radius']}
                       />
                       <Field
                         name="base_rate"
@@ -396,7 +396,7 @@ function OnboardingPage() {
                         min={0}
                         placeholder="15.00"
                         defaultValue={String(account.professionalProfile?.base_rate ?? "")}
-                        error={errors.base_rate}
+                        error={errors['base_rate']}
                       />
                       <Field
                         name="hourly_rate"
@@ -406,7 +406,7 @@ function OnboardingPage() {
                         min={0}
                         placeholder="20.00"
                         defaultValue={String(account.professionalProfile?.hourly_rate ?? "")}
-                        error={errors.hourly_rate}
+                        error={errors['hourly_rate']}
                       />
                     </div>
 
@@ -527,7 +527,7 @@ function Field({
 }: InputHTMLAttributes<HTMLInputElement> & {
   name: string;
   label: string;
-  error?: string;
+  error?: string | undefined;
   hint?: string;
 }) {
   return (
@@ -540,7 +540,7 @@ function Field({
   );
 }
 
-function FieldError({ message }: { message?: string }) {
+function FieldError({ message }: { message?: string | undefined }) {
   if (!message) return null;
   return (
     <p role="alert" className="text-sm font-medium text-destructive">

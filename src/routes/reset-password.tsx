@@ -114,11 +114,11 @@ function ResetPasswordPage() {
                     type="password"
                     autoComplete="new-password"
                     placeholder="Mínimo 8 caracteres"
-                    aria-invalid={Boolean(errors.password)}
+                    aria-invalid={Boolean(errors['password'])}
                   />
-                  {errors.password ? (
+                  {errors['password'] ? (
                     <p role="alert" className="text-sm font-medium text-destructive">
-                      {errors.password}
+                      {errors['password']}
                     </p>
                   ) : null}
                 </div>
@@ -130,11 +130,11 @@ function ResetPasswordPage() {
                     type="password"
                     autoComplete="new-password"
                     placeholder="••••••••"
-                    aria-invalid={Boolean(errors.confirm_password)}
+                    aria-invalid={Boolean(errors['confirm_password'])}
                   />
-                  {errors.confirm_password ? (
+                  {errors['confirm_password'] ? (
                     <p role="alert" className="text-sm font-medium text-destructive">
-                      {errors.confirm_password}
+                      {errors['confirm_password']}
                     </p>
                   ) : null}
                 </div>

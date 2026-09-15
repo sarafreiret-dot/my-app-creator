@@ -61,8 +61,8 @@ export function friendlyError(error: unknown, fallback?: string): string {
     return "No pudimos conectarnos. Revisa tu conexión a internet e inténtalo de nuevo.";
   }
 
-  if (message.includes("Invalid login credentials")) return AUTH_MESSAGES.invalid_credentials!;
-  if (message.includes("User already registered")) return AUTH_MESSAGES.user_already_exists!;
+  if (message.includes("Invalid login credentials")) return AUTH_MESSAGES['invalid_credentials']!;
+  if (message.includes("User already registered")) return AUTH_MESSAGES['user_already_exists']!;
 
   return generic;
 }
