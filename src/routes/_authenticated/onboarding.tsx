@@ -527,7 +527,7 @@ function Field({
 }: InputHTMLAttributes<HTMLInputElement> & {
   name: string;
   label: string;
-  error?: string;
+  error?: string | undefined;
   hint?: string;
 }) {
   return (
@@ -540,7 +540,7 @@ function Field({
   );
 }
 
-function FieldError({ message }: { message?: string }) {
+function FieldError({ message }: { message?: string | undefined }) {
   if (!message) return null;
   return (
     <p role="alert" className="text-sm font-medium text-destructive">
