@@ -15,15 +15,15 @@ import { newPasswordSchema } from "@/lib/onboarding-schemas";
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
     meta: [
-      { title: "Crea una nueva contraseña | Servipro" },
+      { title: "Crea una nueva contraseña | ServiGo" },
       {
         name: "description",
-        content: "Define una contraseña nueva para recuperar el acceso a tu cuenta de Servipro.",
+        content: "Define una contraseña nueva para recuperar el acceso a tu cuenta de ServiGo.",
       },
-      { property: "og:title", content: "Crea una nueva contraseña | Servipro" },
+      { property: "og:title", content: "Crea una nueva contraseña | ServiGo" },
       {
         property: "og:description",
-        content: "Restablece tu contraseña de Servipro de forma segura.",
+        content: "Restablece tu contraseña de ServiGo de forma segura.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

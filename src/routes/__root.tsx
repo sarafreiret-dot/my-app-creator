@@ -83,16 +83,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Servipro | Profesionales de confianza cerca de ti" },
+      { title: "ServiGo | Profesionales de confianza cerca de ti" },
       {
         name: "description",
         content:
-          "Servipro conecta clientes con profesionales verificados: electricistas, plomeros, técnicos y más.",
+          "ServiGo conecta clientes con profesionales verificados: electricistas, plomeros, técnicos y más.",
       },
-      { property: "og:title", content: "Servipro | Profesionales de confianza cerca de ti" },
+      { property: "og:title", content: "ServiGo | Profesionales de confianza cerca de ti" },
       {
         property: "og:description",
-        content: "Encuentra profesionales verificados u ofrece tus servicios en Servipro.",
+        content: "Encuentra profesionales verificados u ofrece tus servicios en ServiGo.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

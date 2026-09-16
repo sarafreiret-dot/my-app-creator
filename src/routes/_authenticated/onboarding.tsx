@@ -31,16 +31,16 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/onboarding")({
   head: () => ({
     meta: [
-      { title: "Completa tu perfil | Servipro" },
+      { title: "Completa tu perfil | ServiGo" },
       {
         name: "description",
         content:
-          "Elige si buscas servicios o los ofreces y completa tu perfil para empezar a usar Servipro.",
+          "Elige si buscas servicios o los ofreces y completa tu perfil para empezar a usar ServiGo.",
       },
-      { property: "og:title", content: "Completa tu perfil | Servipro" },
+      { property: "og:title", content: "Completa tu perfil | ServiGo" },
       {
         property: "og:description",
-        content: "Configura tu cuenta de cliente o profesional en Servipro.",
+        content: "Configura tu cuenta de cliente o profesional en ServiGo.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -202,7 +202,7 @@ function OnboardingPage() {
             Paso {step === "role" ? "1" : "2"} de 2
           </p>
           <h1 className="mt-1 text-2xl font-semibold">
-            {step === "role" ? "¿Cómo vas a usar Servipro?" : "Completa tu perfil"}
+            {step === "role" ? "¿Cómo vas a usar ServiGo?" : "Completa tu perfil"}
           </h1>
           <p className="mt-1 text-sm text-primary-foreground/75">
             {step === "role"

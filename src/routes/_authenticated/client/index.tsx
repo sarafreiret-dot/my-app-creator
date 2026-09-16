@@ -10,16 +10,16 @@ import { accountQueryOptions, homePathForRole } from "@/lib/account";
 export const Route = createFileRoute("/_authenticated/client/")({
   head: () => ({
     meta: [
-      { title: "Mi panel de cliente | Servipro" },
+      { title: "Mi panel de cliente | ServiGo" },
       {
         name: "description",
         content:
-          "Tu espacio en Servipro para gestionar tu perfil y, muy pronto, contratar profesionales cerca de ti.",
+          "Tu espacio en ServiGo para gestionar tu perfil y, muy pronto, contratar profesionales cerca de ti.",
       },
-      { property: "og:title", content: "Mi panel de cliente | Servipro" },
+      { property: "og:title", content: "Mi panel de cliente | ServiGo" },
       {
         property: "og:description",
-        content: "Gestiona tu cuenta de cliente en Servipro.",
+        content: "Gestiona tu cuenta de cliente en ServiGo.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
