@@ -1,10 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
+import { Pencil } from "lucide-react";
+import { useState } from "react";
 
 import { LoadingScreen } from "@/components/feedback/states";
 import { AppContent, AppHeader, AppScreen, BottomNav, SignOutButton } from "@/components/layout/AppShell";
+import { ProfileEditForm } from "@/components/profile/ProfileEditForm";
 import { ProfileSummary } from "@/components/profile/ProfileSummary";
+import { Button } from "@/components/ui/button";
 import { accountQueryOptions, homePathForRole } from "@/lib/account";
+
 
 export const Route = createFileRoute("/_authenticated/professional/perfil")({
   head: () => ({
