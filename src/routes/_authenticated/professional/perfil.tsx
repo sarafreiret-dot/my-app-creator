@@ -1,10 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
+import { Pencil } from "lucide-react";
+import { useState } from "react";
 
 import { LoadingScreen } from "@/components/feedback/states";
 import { AppContent, AppHeader, AppScreen, BottomNav, SignOutButton } from "@/components/layout/AppShell";
+import { ProfileEditForm } from "@/components/profile/ProfileEditForm";
 import { ProfileSummary } from "@/components/profile/ProfileSummary";
+import { Button } from "@/components/ui/button";
 import { accountQueryOptions, homePathForRole } from "@/lib/account";
+
 
 export const Route = createFileRoute("/_authenticated/professional/perfil")({
   head: () => ({
@@ -39,15 +44,34 @@ export const Route = createFileRoute("/_authenticated/professional/perfil")({
 
 function ProfessionalProfilePage() {
   const { data: account } = useQuery(accountQueryOptions());
+  const queryClient = useQueryClient();
+  const [editing, setEditing] = useState(false);
   if (!account) return <LoadingScreen />;
 
   return (
     <AppScreen>
       <AppHeader title="Mi perfil" subtitle="Cuenta profesional" right={<SignOutButton />} />
       <AppContent>
-        <ProfileSummary account={account} />
+        {editing ? (
+          <ProfileEditForm
+            account={account}
+            onDone={() => {
+              void queryClient.invalidateQueries({ queryKey: ["account"] });
+              setEditing(false);
+            }}
+            onCancel={() => setEditing(false)}
+          />
+        ) : (
+          <>
+            <ProfileSummary account={account} />
+            <Button variant="outline" className="mt-4 w-full" onClick={() => setEditing(true)}>
+              <Pencil aria-hidden /> Editar mi perfil
+            </Button>
+          </>
+        )}
       </AppContent>
       <BottomNav role="professional" />
     </AppScreen>
   );
 }
+
