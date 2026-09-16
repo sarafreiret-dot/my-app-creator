@@ -22,16 +22,16 @@ import {
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Ingresa o crea tu cuenta | Servipro" },
+      { title: "Ingresa o crea tu cuenta | ServiGo" },
       {
         name: "description",
         content:
-          "Accede a Servipro con tu correo o con Google para contratar profesionales verificados u ofrecer tus servicios.",
+          "Accede a ServiGo con tu correo o con Google para contratar profesionales verificados u ofrecer tus servicios.",
       },
-      { property: "og:title", content: "Ingresa o crea tu cuenta | Servipro" },
+      { property: "og:title", content: "Ingresa o crea tu cuenta | ServiGo" },
       {
         property: "og:description",
-        content: "Entra a Servipro y conecta con profesionales de confianza.",
+        content: "Entra a ServiGo y conecta con profesionales de confianza.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -168,7 +168,7 @@ function AuthPage() {
             <ShieldCheck className="size-3.5" aria-hidden /> Profesionales verificados
           </span>
           <h1 className="mt-3 text-2xl font-semibold">
-            {mode === "forgot" ? "Recupera tu acceso" : "Bienvenido a Servipro"}
+            {mode === "forgot" ? "Recupera tu acceso" : "Bienvenido a ServiGo"}
           </h1>
           <p className="mt-1 text-sm text-primary-foreground/75">
             {mode === "forgot"

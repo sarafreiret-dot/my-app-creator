@@ -9,17 +9,17 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Servipro | Profesionales de confianza cerca de ti" },
+      { title: "ServiGo | Profesionales de confianza cerca de ti" },
       {
         name: "description",
         content:
-          "Servipro conecta a clientes con electricistas, plomeros, técnicos y más profesionales verificados. Crea tu cuenta gratis y empieza en minutos.",
+          "ServiGo conecta a clientes con electricistas, plomeros, técnicos y más profesionales verificados. Crea tu cuenta gratis y empieza en minutos.",
       },
-      { property: "og:title", content: "Servipro | Profesionales de confianza cerca de ti" },
+      { property: "og:title", content: "ServiGo | Profesionales de confianza cerca de ti" },
       {
         property: "og:description",
         content:
-          "Encuentra profesionales verificados u ofrece tus servicios. Crea tu cuenta gratis en Servipro.",
+          "Encuentra profesionales verificados u ofrece tus servicios. Crea tu cuenta gratis en ServiGo.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -117,7 +117,7 @@ function LandingPage() {
         </Card>
 
         <p className="px-2 text-center text-xs text-muted-foreground">
-          Estamos construyendo Servipro por etapas. Hoy puedes crear tu cuenta y dejar tu perfil
+          Estamos construyendo ServiGo por etapas. Hoy puedes crear tu cuenta y dejar tu perfil
           listo.
         </p>
       </main>
