@@ -1,13 +1,15 @@
 # Roadmap
 
-## Fase 1 — Diseño, autenticación, roles, perfiles y onboarding (EN CURSO)
+## Fase 1 — Diseño, autenticación, roles, perfiles y onboarding (COMPLETA)
 - [x] Sistema de diseño mobile-first con tokens OKLCH (navy, azul eléctrico, verde para estados positivos)
 - [x] Tablas: profiles, profile_private, user_roles, professional_profiles, specialties, professional_specialties
 - [x] RLS estricta + has_role (security definer) + assign_initial_role (impide autoasignarse admin)
 - [x] Google OAuth (Lovable Cloud) + email/contraseña
 - [x] Bucket privado de avatares con políticas por usuario
-- [ ] Pantallas: landing, acceso, recuperación de contraseña, onboarding, panel cliente, panel profesional
-- [ ] Verificación: registro, login, onboarding, rutas protegidas, RLS
+- [x] Pantallas: landing, acceso, recuperación de contraseña, onboarding, panel cliente, panel profesional
+- [x] Verificación: registro, login, onboarding, rutas protegidas, RLS
+- [x] Regla interna: solo profesionales `verified` pueden autorizar funciones profesionales futuras
+- [x] Tarifas conservadas únicamente como información de perfil, sin cálculo de precios ni matching
 
 ## Fase 2 — Ubicación, disponibilidad, panel profesional
 - [ ] Disponibilidad: disponible ahora / no disponible / programada
